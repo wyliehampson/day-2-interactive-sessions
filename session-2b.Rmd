@@ -1,0 +1,112 @@
+---
+title: "Session 2b"
+author: "Wylie Hampson"
+date: "8/3/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(palmerpenguins)
+```
+
+## Plot a function in `ggplot2`
+
+```{r}
+
+eq <- function(x) {
+  
+  3 * x ^ 2 + 4
+  
+}
+
+# Use stat_function()
+
+ggplot(data = data.frame(x = c(1, 100)), aes(x = x)) +
+  stat_function(fun = eq)
+
+```
+
+### Task
+
+Plot $f(x)=2.4-5x^3+2.1x^2$
+
+Over a range from -50 to +50
+
+```{r}
+
+func <- function (x) {
+  
+  2.4 - 5 * x ^ 3 + 2.1 * x ^ 2
+  
+}
+
+ggplot(data = data.frame(x = c(-50, 50)), aes(x = x)) +
+  stat_function(fun = func)
+  
+
+```
+
+### `penguin` body mass and flipper lengths
+
+Basic ggplot scatterplot of body mass (y) and flipper length (x)
+
+```{r}
+
+ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species)) +
+  scale_color_manual(values = c("red", "purple", "black")) +
+  labs(x = "Flipper legnth (mm)",
+       y = "Body mass (g)",
+       title = "Palmer Penguins Size Measurements",
+       caption = "Data collected by KB Gorman et al. at Palmer Station",
+       collor = "Species") +
+  facet_wrap(~island) +
+  theme_light()
+    
+
+```
+
+#### Higher order derivative
+
+```{r}
+gt <- expression(2.2 + 3.1 * t - 5.6 * t ^ 4)
+
+dg_dt <- D(expr = gt, 't')
+
+dg_dt
+```
+```{r}
+d2g_dt2 <- D(expr = dg_dt, 't')
+
+d2g_dt2
+```
+
+## Partial derivatives
+
+```{r}
+f_xyz <- expression(2*x*y - 3*(x^2)*(z^3))
+
+df_dx <- D(expr = f_xyz, 'x')
+
+df_dx
+
+df_dy <- D(expr = f_xyz, 'y')
+
+df_dy
+
+df_dz <- D(expr = f_xyz, 'z')
+
+df_dz
+```
+
+
+
+
+
+
+
+
+
+
