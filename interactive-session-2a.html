@@ -171,7 +171,39 @@ pre code {
 </div>
 
 
+<div id="derivatives-in-r" class="section level2">
+<h2>Derivatives in R</h2>
+<pre class="r"><code>fx &lt;- expression(x^2)
 
+df_dx &lt;- D(expr = fx, name = &#39;x&#39;)
+
+df_dx</code></pre>
+<pre><code>## 2 * x</code></pre>
+<pre class="r"><code># Evaluate the slope of f(x) at x = 831
+
+x &lt;- seq(from = -10, to = 10, by = 0.5)
+eval(expr = df_dx)</code></pre>
+<pre><code>##  [1] -20 -19 -18 -17 -16 -15 -14 -13 -12 -11 -10  -9  -8  -7  -6  -5  -4  -3  -2
+## [20]  -1   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+## [39]  18  19  20</code></pre>
+<pre class="r"><code>gt &lt;- expression(3 * t ^ 2 - 4 * cos(t))
+
+dg_dt &lt;- D(expr = gt, name = &#39;t&#39;)
+
+dg_dt</code></pre>
+<pre><code>## 3 * (2 * t) + 4 * sin(t)</code></pre>
+<p>Try my own function!</p>
+<pre class="r"><code>se &lt;- expression(9 * e ^ 7 + 1 / ((e ^ 4) - 1))
+
+ds_de &lt;- D(expr = se, name = &#39;e&#39;)
+
+ds_de</code></pre>
+<pre><code>## 9 * (7 * e^6) - 4 * e^3/((e^4) - 1)^2</code></pre>
+<pre class="r"><code>e &lt;- 4
+
+eval(expr = ds_de)</code></pre>
+<pre><code>## [1] 258048</code></pre>
+</div>
 
 
 

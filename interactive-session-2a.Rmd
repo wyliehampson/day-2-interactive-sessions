@@ -8,3 +8,46 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+## Derivatives in R
+
+```{r}
+fx <- expression(x^2)
+
+df_dx <- D(expr = fx, name = 'x')
+
+df_dx
+
+# Evaluate the slope of f(x) at x = 831
+
+x <- seq(from = -10, to = 10, by = 0.5)
+eval(expr = df_dx)
+```
+
+```{r}
+gt <- expression(3 * t ^ 2 - 4 * cos(t))
+
+dg_dt <- D(expr = gt, name = 't')
+
+dg_dt
+```
+
+Try my own function!
+```{r}
+se <- expression(9 * e ^ 7 + 1 / ((e ^ 4) - 1))
+
+ds_de <- D(expr = se, name = 'e')
+
+ds_de
+
+e <- 4
+
+eval(expr = ds_de)
+```
+
+
+
+
+
+
+
